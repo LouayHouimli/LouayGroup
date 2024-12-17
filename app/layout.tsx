@@ -25,49 +25,39 @@ export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   const cookieStore = await cookies();
-  const defaultOpen = cookieStore.get("sidebar:state")?.value ? cookieStore.get("sidebar:state")?.value === "true" : true;
-  const session = await auth()
-  
+  const defaultOpen = cookieStore.get("sidebar:state")?.value
+    ? cookieStore.get("sidebar:state")?.value === "true"
+    : true;
+  const session = await auth();
 
   return (
     <html suppressHydrationWarning>
       <body>
-        
-      <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-        {session ? (<SidebarProvider hidden defaultOpen={defaultOpen}>
-          <AppSidebar user={session?.user} />
-          <SidebarTrigger/>
-          <main className="flex justify-center items-start mx-auto min-h-screen ">
-          
-            <div className="w-full flex flex-row justify-center items-center">
-
-           
-            {children}
-
-            </div>
-          </main>
-        </SidebarProvider>) : (
-
-<main className="flex justify-center items-center  mx-auto min-h-screen ">
-           
-<div className="w-full flex justify-center items-center">
-
-
-{children}
-
-</div>
-</main>
-        )
-
-        }
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {session ? (
+            <SidebarProvider hidden defaultOpen={defaultOpen}>
+              <AppSidebar user={session?.user} />
+              <SidebarTrigger />
+              <div className="flex flex-col h-screen mx-auto">
+                {/* `children` as a full-page content */}
+                {children}
+              </div>
+            </SidebarProvider>
+          ) : (
+            <main className="flex justify-center items-center min-h-screen">
+              <div className="w-full flex justify-center items-center">
+                {children}
+              </div>
+            </main>
+          )}
         </ThemeProvider>
-
       </body>
     </html>
   );
 }
+
