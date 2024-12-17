@@ -1,4 +1,4 @@
-import { Calendar, Home, Inbox, Search, Settings,Contact, ChevronUp, User2 } from "lucide-react"
+import { Calendar, Home, Inbox, Search, Settings,Contact, ChevronUp, User2, GalleryVerticalEnd, AudioWaveform, Command } from "lucide-react"
 
 import {
   Sidebar,
@@ -10,6 +10,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarFooter,
+  SidebarHeader,
 } from "@/components/ui/sidebar"
 
 import { ModeToggle } from "./theme-toggle"
@@ -17,6 +18,11 @@ import { title } from "process"
 import { url } from "inspector"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu"
 import { NavUser } from "./nav-user"
+import { TeamSwitcher } from "./project-switcher"
+
+
+
+
 
 
 
@@ -57,6 +63,9 @@ const items = [
 export function AppSidebar({user} : any) {
   return (
     <Sidebar>
+      <SidebarHeader>
+        <TeamSwitcher  />
+      </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
           <div className="flex items-center justify-between">
