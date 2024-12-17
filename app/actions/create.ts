@@ -10,5 +10,5 @@ export const createProject = async (formData : FormData) => {
 }
 
 export const signOutUSer = async () =>{
-    await signOut({redirectTo : "/"})
+    await signOut({redirectTo : "/login"})
 }

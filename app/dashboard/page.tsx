@@ -1,8 +1,9 @@
 import React from 'react'
 import { ProfileForm } from '@/components/form'
+import { Calendar } from '@/components/ui/calendar'
  function DashboardPage () {
   return (
-    <div><ProfileForm/></div>
+    <div><Calendar className='flex items-center'/></div>
   )
 }
 

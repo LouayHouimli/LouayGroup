@@ -41,9 +41,9 @@ export default async function RootLayout({
         {session ? (<SidebarProvider hidden defaultOpen={defaultOpen}>
           <AppSidebar user={session?.user} />
           <SidebarTrigger/>
-          <main className="flex justify-center items-center  mx-auto min-h-screen">
-           
-            <div className="w-full flex justify-center items-center">
+          <main className="flex justify-center items-start mx-auto min-h-screen ">
+          
+            <div className="w-full flex flex-row justify-center items-center">
 
            
             {children}
@@ -52,7 +52,7 @@ export default async function RootLayout({
           </main>
         </SidebarProvider>) : (
 
-<main className="flex justify-center items-center  mx-auto min-h-screen">
+<main className="flex justify-center items-center  mx-auto min-h-screen ">
            
 <div className="w-full flex justify-center items-center">
 
