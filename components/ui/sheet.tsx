@@ -7,14 +7,29 @@ import { X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
+// VisuallyHidden Component to hide content visually but keep it accessible
+const VisuallyHidden = ({ children }: { children: React.ReactNode }) => (
+  <span
+    style={{
+      position: "absolute",
+      width: "1px",
+      height: "1px",
+      margin: "-1px",
+      padding: "0",
+      border: "0",
+      clip: "rect(0 0 0 0)",
+      clipPath: "inset(100%)",
+      overflow: "hidden",
+    }}
+  >
+    {children}
+  </span>
+)
+
 const Sheet = SheetPrimitive.Root
-
 const SheetTrigger = SheetPrimitive.Trigger
-
 const SheetClose = SheetPrimitive.Close
-
 const SheetPortal = SheetPrimitive.Portal
-
 const SheetOverlay = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Overlay>,
   React.ComponentPropsWithoutRef<typeof SheetPrimitive.Overlay>
@@ -106,11 +121,14 @@ const SheetTitle = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Title>,
   React.ComponentPropsWithoutRef<typeof SheetPrimitive.Title>
 >(({ className, ...props }, ref) => (
-  <SheetPrimitive.Title
-    ref={ref}
-    className={cn("text-lg font-semibold text-foreground", className)}
-    {...props}
-  />
+  // Wrap the SheetTitle with VisuallyHidden to ensure it's accessible but not visible
+  <VisuallyHidden>
+    <SheetPrimitive.Title
+      ref={ref}
+      className={cn("text-lg font-semibold text-foreground", className)}
+      {...props}
+    />
+  </VisuallyHidden>
 ))
 SheetTitle.displayName = SheetPrimitive.Title.displayName
 

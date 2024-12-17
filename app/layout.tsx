@@ -32,6 +32,7 @@ export default async function RootLayout({
   return (
     <html suppressHydrationWarning>
       <body>
+        
       <ThemeProvider
             attribute="class"
             defaultTheme="system"
